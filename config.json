@@ -148,9 +148,9 @@
   "donate-over-proxy": 1,
   "pools": [
     {
-      "algo": null,
-      "coin": "monero",
-      "url": "stratum+tcp://randomxmonero.usa-east.nicehash.com:3380",
+      "algo": "kawpow",
+      "coin": null,
+      "url": "stratum+tcp://kawpow.usa-east.nicehash.com:3385",
       "user": "38WUQZAHvSrX7ihZoNDcXawwQJoVmFVdao.nv1050",
       "pass": "x",
       "rig-id": null,

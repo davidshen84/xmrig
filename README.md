@@ -2,4 +2,4 @@
 
 https://xmrig.com/
 
-nvidia-docker run --rm -v $(pwd)/config.json:/xmrig/config.json xmrig
+nvidia-docker run --rm -it -v $(pwd)/config.json:/xmrig/config.json xmrig

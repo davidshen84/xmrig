@@ -1,7 +1,7 @@
 FROM nvidia/cuda:11.2.2-devel-ubuntu20.04 as builder
 
 ARG TZ=Australia/Sydney
-ARG xmrigVersion=6.10.0
+ARG xmrigVersion=6.11.1
 ARG xmrigCudaVersion=6.5.0
 ARG cmakeJobs=9
 
@@ -24,12 +24,12 @@ RUN tar xzf xmrig-cuda.tar.gz -C xmrig-cuda --strip-components=1
 
 # build xmrig
 WORKDIR /build/xmrig
-RUN cmake -DWITH_MSR=OFF /download/xmrig
+RUN cmake -DCMAKE_BUILD_TYPE=Release -DWITH_MSR=OFF -DWITH_OPENCL=OFF -DWITH_ADL=OFF -DWITH_STRICT_CACHE=OFF -DWITH_BENCHMARK=OFF -DWITH_HTTP=OFF /download/xmrig
 RUN cmake --build . --parallel ${cmakeJobs}
 
 # build xmrig-cuda
 WORKDIR /build/xmrig-cuda
-RUN cmake /download/xmrig-cuda
+RUN cmake -DCMAKE_BUILD_TYPE=Release /download/xmrig-cuda
 RUN cmake --build . --parallel ${cmakeJobs}
 
 
