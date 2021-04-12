@@ -29,17 +29,11 @@ RUN cmake --build . --parallel ${buildJobs}
 
 FROM alpine:edge
 
-ARG TZ=Australia/Sydney
 ARG xmrigVersion=6.11.1
 
 LABEL maintainer="Xi Shen" \
     xmrig.version="${xmrigVersion}"
 
-ENV TZ=${TZ}
-RUN apk add tzdata
-RUN cp /usr/share/zoneinfo/${TZ} /etc/localtime
-RUN echo "${TZ}" > /etc/localtime
-RUN apk del tzdata
 RUN apk update && apk upgrade --available
 
 WORKDIR /xmrig
