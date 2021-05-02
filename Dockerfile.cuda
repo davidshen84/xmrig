@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.2.2-devel-ubuntu20.04 as builder
+FROM nvidia/cuda:11.3.0-devel-ubuntu20.04 as builder
 
 ARG TZ=Australia/Sydney
 ARG xmrigVersion=6.12.1-mo2
@@ -33,7 +33,7 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release /download/xmrig-cuda
 RUN cmake --build . --parallel ${cmakeJobs}
 
 
-FROM nvidia/cuda:11.2.2-runtime-ubuntu20.04
+FROM nvidia/cuda:11.3.0-runtime-ubuntu20.04
 
 ARG TZ=Australia/Sydney
 ARG xmrigVersion=6.12.1-mo2
@@ -50,7 +50,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install tzdata && \
     dpkg-reconfigure --frontend noninteractive tzdata
-RUN apt-get -y install hwloc libuv1 && \
+RUN apt-get -y install hwloc libuv1 \
     nvidia-utils-${hostNvidiaDriverVersion} && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
