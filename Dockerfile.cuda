@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.3.0-devel-ubuntu20.04 as builder
+FROM nvidia/cuda:11.2.2-devel-ubuntu20.04 as builder
 
 ARG TZ=Australia/Sydney
 ARG xmrigVersion=6.12.1-mo2
@@ -33,7 +33,7 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release /download/xmrig-cuda
 RUN cmake --build . --parallel ${cmakeJobs}
 
 
-FROM nvidia/cuda:11.3.0-runtime-ubuntu20.04
+FROM nvidia/cuda:11.2.2-runtime-ubuntu20.04
 
 ARG TZ=Australia/Sydney
 ARG xmrigVersion=6.12.1-mo2
