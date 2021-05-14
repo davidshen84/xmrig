@@ -22,6 +22,7 @@
     "rdmsr": true,
     "wrmsr": false,
     "cache_qos": false,
+    "numa": true,
     "scratchpad_prefetch_mode": 1
   },
   "cpu": {
@@ -36,61 +37,67 @@
     "argon2-impl": null,
     "astrobwt-max-size": 550,
     "astrobwt-avx2": false,
-    "argon2": [-1, -1, -1, -1],
-    "astrobwt": [0, 1, 2, 3, 4, 5, 6, 7],
+    "argon2": [0, 1, 2],
+    "astrobwt": [0, 1, 2, 3],
     "cn": [
-      [1, -1],
-      [1, -1],
-      [1, -1],
-      [1, -1]
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3]
     ],
     "cn-heavy": [
-      [1, -1],
-      [1, -1]
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3]
     ],
     "cn-lite": [
-      [1, -1],
-      [1, -1],
-      [1, -1],
-      [1, -1],
-      [1, -1],
-      [1, -1],
-      [1, -1],
-      [1, -1]
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3]
     ],
     "cn-pico": [
-      [2, -1],
-      [2, -1],
-      [2, -1],
-      [2, -1],
-      [2, -1],
-      [2, -1],
-      [2, -1],
-      [2, -1]
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3]
     ],
-    "rx": [-1, -1, -1, -1],
-    "rx/arq": [-1, -1, -1, -1],
-    "rx/keva": [-1, -1, -1, -1],
-    "rx/wow": [-1, -1, -1, -1, -1, -1, -1, -1],
+    "cn/gpu": [0, 4, 1, 5, 2, 6, 3, 7],
+    "cn/upx2": [
+      [2, 0],
+      [2, 4],
+      [2, 1],
+      [2, 5],
+      [2, 2],
+      [2, 6],
+      [2, 3],
+      [2, 7]
+    ],
+    "panthera": [0, 1, 2, 3],
+    "rx": [0, 1, 2, 3],
+    "rx/arq": [0, 1, 2, 3],
+    "rx/keva": [0, 1, 2, 3],
+    "rx/wow": [0, 1, 2, 3],
     "cn/0": false,
     "cn-lite/0": false
   },
   "log-file": null,
-  "donate-level": 1,
+  "donate-level": 0,
   "donate-over-proxy": 1,
   "pools": [
     {
       "algo": null,
       "coin": "monero",
-      "url": "stratum+tcp://randomxmonero.usa-east.nicehash.com:3380",
-      "user": "38WUQZAHvSrX7ihZoNDcXawwQJoVmFVdao.monero",
+      "url": "stratum+ssl://gulf.moneroocean.stream:20128",
+      "user": "8BjurXyveWHGZgPdLqxukUd7aDWdkWqqc1PoSs8oK9idejw8W57aqS14qkL4TNEgsM7Qh5zR5QtAoXAqkjx7e71MMab69ko.x",
       "pass": "x",
       "rig-id": null,
       "nicehash": true,
       "keepalive": true,
       "enabled": true,
-      "tls": false,
-      "tls-fingerprint": null,
+      "tls": true,
+      "tls-fingerprint": "239daadd5c7d0ac097376c7871f787738826eef1c024729eff870e473b970855",
       "daemon": false,
       "socks5": null,
       "self-select": null,

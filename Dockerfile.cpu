@@ -1,8 +1,7 @@
 FROM alpine:3 as builder
 
-ARG xmrigVersion=6.11.1
-ARG buildJobs=9
-
+ARG xmrigVersion=6.12.1-mo2
+ARG buildJobs=1
 
 RUN apk update && apk upgrade --available
 RUN apk add alpine-sdk cmake automake autoconf libtool \
@@ -17,7 +16,7 @@ RUN make -j ${buildJobs} && make install
 
 # build xmrig
 WORKDIR /download/xmrig
-ADD https://github.com/xmrig/xmrig/archive/refs/tags/v${xmrigVersion}.tar.gz ../xmrig.tar.gz
+ADD https://github.com/MoneroOcean/xmrig/archive/refs/tags/v${xmrigVersion}.tar.gz ../xmrig.tar.gz
 RUN tar xzf ../xmrig.tar.gz --strip-components=1
 COPY static-lib.patch .
 RUN patch -p1 < static-lib.patch
@@ -29,7 +28,7 @@ RUN cmake --build . --parallel ${buildJobs}
 
 FROM alpine:edge
 
-ARG xmrigVersion=6.11.1
+ARG xmrigVersion=6.12.1-mo2
 
 LABEL maintainer="Xi Shen" \
     xmrig.version="${xmrigVersion}"
