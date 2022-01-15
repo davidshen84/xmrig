@@ -1,8 +1,9 @@
-FROM nvidia/cuda:11.2.2-devel-ubuntu20.04 as builder
+ARG cudaVersion=11.5.1
+FROM nvidia/cuda:${cudaVersion}-devel-ubuntu20.04 as builder
 
 ARG TZ=Australia/Sydney
-ARG xmrigVersion=6.12.1-mo3
-ARG xmrigCudaVersion=6.12.0-mo3
+ARG xmrigVersion=6.16.2-mo2
+ARG xmrigCudaVersion=6.15.1-mo2
 
 ENV TZ=${TZ}
 ENV DEBIAN_FRONTEND="noninteractive"
@@ -23,7 +24,7 @@ RUN tar xzf xmrig-cuda.tar.gz -C xmrig-cuda --strip-components=1
 
 # build xmrig
 WORKDIR /build/xmrig
-RUN cmake -DCMAKE_BUILD_TYPE=Release -DWITH_MSR=OFF -DWITH_OPENCL=OFF -DWITH_ADL=OFF -DWITH_STRICT_CACHE=OFF -DWITH_BENCHMARK=OFF -DWITH_HTTP=OFF /download/xmrig
+RUN cmake -DCMAKE_BUILD_TYPE=Release -DWITH_MSR=OFF -DWITH_OPENCL=OFF -DWITH_ADL=OFF -DWITH_STRICT_CACHE=OFF -DWITH_BENCHMARK=ON -DWITH_HTTP=OFF /download/xmrig
 RUN cmake --build .
 
 # build xmrig-cuda
@@ -32,12 +33,12 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release /download/xmrig-cuda
 RUN cmake --build .
 
 
-FROM nvidia/cuda:11.2.2-runtime-ubuntu20.04
+FROM nvidia/cuda:${cudaVersion}-runtime-ubuntu20.04
 
 ARG TZ=Australia/Sydney
-ARG xmrigVersion=6.12.1-mo3
-ARG xmrigCudaVersion=6.12.0-mo3
-ARG hostNvidiaDriverVersion=460
+ARG xmrigVersion=6.16.2-mo2
+ARG xmrigCudaVersion=6.15.1-mo2
+ARG hostNvidiaDriverVersion=470
 
 LABEL maintainer="Xi Shen" \
     xmrig.version="${xmrigVersion}" \
