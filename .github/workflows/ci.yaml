@@ -2,7 +2,6 @@ name: Build xmrig-mo in docker
 on:
   push:
 permissions:
-  repository-projects: read
   packages: write
 jobs:
   cuda:
@@ -20,4 +19,4 @@ jobs:
         push: true
         file: ./Dockerfile.cuda
         tags: |
-          ghcr.io/davidshen84/xmrig-mo-cuda        
+          ghcr.io/davidshen84/xmrig-cuda-11:6.16.2-mo2
