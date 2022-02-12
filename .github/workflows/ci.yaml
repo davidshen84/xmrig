@@ -19,4 +19,4 @@ jobs:
         push: true
         file: ./Dockerfile.cuda
         tags: |
-          ghcr.io/davidshen84/xmrig-n470-c11:6.16.2-mo2
+          ghcr.io/davidshen84/xmrig-n510-c11:6.16.2-mo2
