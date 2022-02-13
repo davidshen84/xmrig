@@ -38,7 +38,7 @@ FROM nvidia/cuda:${cudaVersion}-runtime-ubuntu20.04
 ARG TZ=Australia/Sydney
 ARG xmrigVersion=6.16.2-mo2
 ARG xmrigCudaVersion=6.15.1-mo2
-ARG nvidiaUtilsVersion=510
+ARG nvidiaUtilsVersion=470
 
 LABEL maintainer="Xi Shen" \
     xmrig.version="${xmrigVersion}" \
