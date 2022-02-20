@@ -4,7 +4,7 @@ on:
 permissions:
   packages: write
 jobs:
-  cuda:
+  xmrig-cuda:
     runs-on: ubuntu-latest
     steps:
     - uses: docker/login-action@v1
@@ -18,5 +18,11 @@ jobs:
         context: ./
         push: true
         file: ./Dockerfile.cuda
+        build-args: |
+          TZ=Australia/Sydney
+          xmrigVersion=6.15.3-mo1
+          xmrigCudaVersion=6.15.1-mo2
+          cudaVersion=11.5.1
+          nvidiaUtilsVersion=510
         tags: |
-          ghcr.io/davidshen84/xmrig-n470-c11:6.16.2-mo2
+          ghcr.io/davidshen84/xmrig-n510-c11:6.15.3-mo1

@@ -1,9 +1,10 @@
-ARG cudaVersion=11.5.1
+ARG cudaVersion
+
 FROM nvidia/cuda:${cudaVersion}-devel-ubuntu20.04 as builder
 
-ARG TZ=Australia/Sydney
-ARG xmrigVersion=6.16.2-mo2
-ARG xmrigCudaVersion=6.15.1-mo2
+ARG TZ
+ARG xmrigVersion
+ARG xmrigCudaVersion
 
 ENV TZ=${TZ}
 ENV DEBIAN_FRONTEND="noninteractive"
@@ -35,15 +36,15 @@ RUN cmake --build .
 
 FROM nvidia/cuda:${cudaVersion}-runtime-ubuntu20.04
 
-ARG TZ=Australia/Sydney
-ARG xmrigVersion=6.16.2-mo2
-ARG xmrigCudaVersion=6.15.1-mo2
-ARG nvidiaUtilsVersion=470
+ARG TZ
+ARG xmrigVersion
+ARG xmrigCudaVersion
 
 LABEL maintainer="Xi Shen" \
     xmrig.version="${xmrigVersion}" \
     xmrig.cuda.version="${xmrigCudaVersion}" \
-    nvidia-driver.version="${nvidiaUtilsVersion}"
+    nvidia.utils.version="${nvidiaUtilsVersion}" \
+    cuda.version="${cudaVersion}"
 
 ENV TZ=${TZ}
 ENV DEBIAN_FRONTEND="noninteractive"
