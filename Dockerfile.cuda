@@ -39,13 +39,11 @@ FROM nvidia/cuda:${cudaVersion}-runtime-ubuntu20.04
 ARG TZ
 ARG xmrigVersion
 ARG xmrigCudaVersion
-ARG nvidiaUtilsVersion
 ARG cudaVersion
 
 LABEL maintainer="Xi Shen" \
     xmrig.version="${xmrigVersion}" \
     xmrig.cuda.version="${xmrigCudaVersion}" \
-    nvidia.utils.version="${nvidiaUtilsVersion}" \
     cuda.version="${cudaVersion}"
 
 ENV TZ=${TZ}
@@ -55,7 +53,6 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install tzdata && \
     dpkg-reconfigure --frontend noninteractive tzdata
 RUN apt-get -y install hwloc libuv1 \
-    nvidia-utils-${nvidiaUtilsVersion} && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 

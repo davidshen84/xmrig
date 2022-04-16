@@ -23,6 +23,5 @@ jobs:
           xmrigVersion=6.15.3-mo1
           xmrigCudaVersion=6.15.1-mo2
           cudaVersion=11.5.1
-          nvidiaUtilsVersion=510
         tags: |
-          ghcr.io/davidshen84/xmrig-n510-c11:6.15.3-mo1
+          ghcr.io/davidshen84/xmrig-n510-c11:6.15.3-mo1-wsl
