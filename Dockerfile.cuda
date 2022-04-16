@@ -52,7 +52,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get -y install tzdata && \
     dpkg-reconfigure --frontend noninteractive tzdata
-RUN apt-get -y install hwloc libuv1 \
+RUN apt-get -y install hwloc libuv1 && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
